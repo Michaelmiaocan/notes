@@ -13,7 +13,7 @@
 
 Zookeeper的安装和配置十分简单, 既可以配置成单机模式, 也可以配置成集群模式. 下面将分别进行介绍.
 ### 1. 单机模式
-[下载](https://zookeeper.apache.org/releases.html)zookeeper的安装包之后, 解压到合适目录. 进入zookeeper目录下的conf子目录, 创建zoo.cfg进行如下配置:
+[下载](https://zookeeper.apache.org/releases.html) zookeeper的安装包之后, 解压到合适目录. 进入zookeeper目录下的conf子目录, 创建zoo.cfg进行如下配置:
 ```
 tickTime=2000
 dataDir=/opt/zookeeper/data
