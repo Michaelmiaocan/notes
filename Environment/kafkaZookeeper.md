@@ -5,6 +5,7 @@
 * [Kafka常用命令](#三Kafka常用命令)
 * [Kafka监控软件](#四Kafka监控软件)
 * [测试](#五测试)
+* [参考文档](#六参考文档)
 
 ## 一、Zookeeper环境搭建
 > Zookeeper是一种在分布式系统中被广泛用来作为分布式状态管理、分布式协调管理、
@@ -127,5 +128,15 @@ server.2=10.181.65.180:2888:3888
 > Kafka是一个分布式消息系统，由linkedin使用scala编写，用作LinkedIn的活动流（Activity Stream）和运营数据处理管道（Pipeline）的基础,具有高水平扩展和高吞吐量
 
 ## 三、Kafka常用命令
+
 ## 四、Kafka监控软件
+
 ## 五、测试
+
+## 六、参考文档
+* [kafka官方文档](http://kafka.apache.org/quickstart)
+* [OrcHome](http://orchome.com/)
+* [kafka源码](https://github.com/apache/kafka/)
+* [胡夕博客](http://www.cnblogs.com/huxi2b/tag/Kafka/)
+* [阿里中间件团队博客](http://jm.taobao.org/)
+* [confluent](https://www.confluent.io/)
