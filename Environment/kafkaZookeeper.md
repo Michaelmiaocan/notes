@@ -7,9 +7,13 @@
 * [测试](#五测试)
 
 ## 一、Zookeeper环境搭建
+> Zookeeper是一种在分布式系统中被广泛用来作为分布式状态管理、分布式协调管理、
+分布式配置管理、和分布式锁服务的集群。kafka增加和减少服务器都会在Zookeeper节点上触发相应的事件kafka系统会捕获这些事件，
+进行新一轮的负载均衡，客户端也会捕获这些事件来进行新一轮的处理，所以启动Kafka之前需要安装并启动zookeeper。
+
 Zookeeper的安装和配置十分简单, 既可以配置成单机模式, 也可以配置成集群模式. 下面将分别进行介绍.
 ### 1. 单机模式
-[下载](#https://zookeeper.apache.org/releases.html)zookeeper的安装包之后, 解压到合适目录. 进入zookeeper目录下的conf子目录, 创建zoo.cfg进行如下配置:
+[下载](https://zookeeper.apache.org/releases.html)zookeeper的安装包之后, 解压到合适目录. 进入zookeeper目录下的conf子目录, 创建zoo.cfg进行如下配置:
 ```
 tickTime=2000
 dataDir=/opt/zookeeper/data
@@ -25,6 +29,10 @@ clientPort=2181
 到现在为止，zookeeper的单机模式已经配置好了. 启动server只需运行以下脚本:
 ```
 bin/zkServer.sh start conf/zoo.cfg
+```
+查看服务状态:
+```
+bin/zkServer.sh status conf/zoo.cfg
 ```
 
 Server启动之后, 就可以启动client连接server了, 启动客户端可查看具体信息:
@@ -116,6 +124,8 @@ server.2=10.181.65.180:2888:3888
 > 注意事项: 无论是集群还是伪集群模式都要配置相应的myid文件
 
 ## 二、Kafka环境搭建
+> Kafka是一个分布式消息系统，由linkedin使用scala编写，用作LinkedIn的活动流（Activity Stream）和运营数据处理管道（Pipeline）的基础,具有高水平扩展和高吞吐量
+
 ## 三、Kafka常用命令
 ## 四、Kafka监控软件
 ## 五、测试
