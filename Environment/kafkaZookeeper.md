@@ -2,8 +2,8 @@
 
 * [Zookeeper环境搭建](#一zookeeper环境搭建)
 * [Kafka环境搭建](#二kafka环境搭建)
-* [Kafka常用命令](#三Kafka常用命令)
-* [Kafka监控软件](#四Kafka监控软件)
+* [Kafka常用命令](#三kafka常用命令)
+* [Kafka监控软件](#四kafka监控软件)
 * [测试](#五测试)
 * [参考文档](#六参考文档)
 
