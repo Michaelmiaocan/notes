@@ -157,16 +157,108 @@ zookeeper.connect=10.181.65.180:2181,0.181.65.181:2181,0.181.65.182:2181        
 
 
 ## 三、Kafka常用命令
-启动服务
+* 启动服务
 ```
-bin/kafka-server-start.sh config/server.properties
+bin/kafka-server-start.sh config/server.properties  #普通启动
 bin/kafka-server-start.sh -daemon config/server.properties #从后台启动Kafka集群（3台都需要启动）
 ```
 
+* 新建主题
+```
+bin/kafka-topics.sh --create --zookeeper 10.181.65.180:2181 --replication-factor 3 --partitions 3 --topic my-replicated-topic
+```
+
+* 查看主题信息
+```
+bin/kafka-topics.sh --describe --zookeeper 10.181.65.180:2181 --topic my-replicated-topic
+```
+
+* 查看主题列表
+```
+bin/kafka-console-producer.sh --broker-list 10.181.65.180:9092 --topic my-replicated-topic
+```
+
+* 启动生产者
+```
+ bin/kafka-console-producer.sh --broker-list 10.181.65.180:9092 --topic my-replicated-topic
+```
+
+* 启动消费者
+```
+bin/kafka-console-consumer.sh --bootstrap-server 10.181.65.180:9092 --from-beginning --topic my-replicated-topic
+```
 
 ## 四、Kafka监控软件
 
+### 1.KafkaMonitor
+> KafkaOffsetMonitor是一个可以用于监控Kafka的Topic及Consumer消费状况的工具，其配置和使用特别的方便,[源项目Github地址](https://github.com/quantifind/KafkaOffsetMonitor).
+
+最简单的使用方式是从Github上下载一个最新的[KafkaOffsetMonitor-assembly-0.2.1.jar](https://github.com/quantifind/KafkaOffsetMonitor/releases/download/v0.2.1/KafkaOffsetMonitor-assembly-0.2.1.jar)，
+上传到某服务器上，然后执行一句命令就可以运行起来。
+
+KafkaOffsetMonitor的使用
+因为完全没有安装配置的过程，所以直接从KafkaOffsetMonitor的使用开始。
+将KafkaOffsetMonitor-assembly-0.2.0.jar上传到服务器后，可以新建一个脚本用于启动该应用。脚本内容如下:
+```
+java -cp KafkaOffsetMonitor-assembly-0.2.0.jar \
+    com.quantifind.kafka.offsetapp.OffsetGetterWeb \
+    --zk 10.181.65.180:2181,10.181.65.181:2181,10.181.65.182:2181 \
+    --port 8080 \
+    --refresh 10.seconds \
+    --retain 2.days
+```
+
+各参数的作用可以参考一下Github上的描述：
+* offsetStorage:  valid options are ”zookeeper”, ”kafka” or ”storm”. Anything else falls back to ”zookeeper”
+* zk:  the ZooKeeper hosts
+* port: on what port will the app be available
+* refresh:  how often should the app refresh and store a point in the DB
+* retain:  how long should points be kept in the DB
+* dbName:  where to store the history (default ‘offsetapp’)
+* kafkaOffsetForceFromStart:  only applies to ”kafka” format. Force KafkaOffsetMonitor to scan the commit messages from start (see notes below)
+* stormZKOffsetBase:  only applies to ”storm” format. Change the offset storage base in zookeeper, default to ”/stormconsumers” (see notes below)
+* pluginsArgs:  additional arguments used by extensions (see below)
+
+然后访问8080端口即可
+
+### 2.kafka Manager
+#### 运行时环境要求
+1. Kafka 0.8.1.1+
+2. Java 7+
+#### 功能
+为了简化开发者和服务工程师维护Kafka集群的工作，yahoo构建了一个叫做Kafka管理器的基于Web工具，
+叫做 Kafka Manager（[GitHub源码地址](https://github.com/yahoo/kafka-manager)）。这个管理工具可以很容易地发现分布在集群中的哪些topic分布不均匀，
+或者是分区在整个集群分布不均匀的的情况。它支持管理多个集群、选择副本、副本重新分配以及创建Topic。
+同时，这个管理工具也是一个非常好的可以快速浏览这个集群的工具，有如下功能：
+1. 管理多个kafka集群
+2. 便捷的检查kafka集群状态(topics,brokers,备份分布情况,分区分布情况)
+3. 选择你要运行的副本
+4. 基于当前分区状况进行
+5. 可以选择topic配置并创建topic(0.8.1.1和0.8.2的配置不同)
+6. 删除topic(只支持0.8.2以上的版本并且要在broker配置中设置delete.topic.enable=true)
+7. Topic list会指明哪些topic被删除（在0.8.2以上版本适用）
+8. 为已存在的topic增加分区
+9. 为已存在的topic更新配置
+10. 在多个topic上批量重分区
+11. 在多个topic上批量重分区(可选partition broker位置)
+
+#### 安装,配置,启动
+[下载zip](https://github.com/yahoo/kafka-manager/releases/tag/1.3.3.13)文件，解压后在conf/application.conf中将
+kafka-manager.zkhosts的值设置为你的zk地址
+```
+kafka-manager.zkhosts 10.181.65.180:2181,10.181.65.181:2181,10.181.65.182:2181
+```
+启动,指定配置文件位置和启动端口号，默认为9000
+```
+nohup bin/kafka-manager
+-Dconfig.file=conf/application.conf
+ -Dhttp.port=8081 &
+```
+然后访问8081端口即可
+
 ## 五、测试
+
+
 
 ## 六、参考文档
 * [kafka官方文档](http://kafka.apache.org/quickstart)
