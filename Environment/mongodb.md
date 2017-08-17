@@ -5,9 +5,9 @@
 
 * [单机模式  （Standalone）](#一单机模式)
 * [主从模式 （Master-Slaver）](#二主从模式)
-* [副本集模式（Replica Set）](#三ReplicaSet)
-* [分片模式（Sharding）](#四Sharding)
-* [附录:MongoDB配置详解](#附录MongoDB配置详解)
+* [副本集模式（Replica Set）](#三replicaset)
+* [分片模式（Sharding）](#四sharding)
+* [附录:MongoDB配置详解](#附录mongodb配置详解)
 
 ## 一、单机模式
 
