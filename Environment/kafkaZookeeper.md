@@ -246,7 +246,7 @@ java -cp KafkaOffsetMonitor-assembly-0.2.0.jar \
 [下载zip](https://github.com/yahoo/kafka-manager/releases/tag/1.3.3.13)文件，解压后在conf/application.conf中将
 kafka-manager.zkhosts的值设置为你的zk地址
 ```
-kafka-manager.zkhosts 10.181.65.180:2181,10.181.65.181:2181,10.181.65.182:2181
+kafka-manager.zkhosts=10.181.65.180:2181,10.181.65.181:2181,10.181.65.182:2181
 ```
 启动,指定配置文件位置和启动端口号，默认为9000
 ```
