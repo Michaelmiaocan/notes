@@ -2,6 +2,7 @@
 > 平时各种环境搭建过程记录
 
 * [kafka与zookeeper单机集群搭建](kafkaZookeeper.md)
+* [VM安装Ubuntu以及环境配置](LinuxInstall/LinuxInstall.md)
 * [mongodb单机、集群、副本集以及分片搭建](mongodb.md)
 * [ELK统一日志采集系统环境搭建](ELK.md)
 * [MySQL环境搭建](Mysql.md)
