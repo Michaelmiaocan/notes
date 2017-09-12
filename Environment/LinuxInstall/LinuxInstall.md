@@ -105,5 +105,69 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 
 ### 4.nodejs环境安装
+[下载](https://nodejs.org/dist/v6.11.3/node-v6.11.3-linux-x64.tar.xz)nodejs二进制安装文件，执行以下命令：
+``` lua
+cd /home/linkage/Documents   #进入二进制文件目录
+
+xz -d node-v6.11.3-linux-x64.tar.xz     #解压 tra.xz文件
+
+tar -xvf node-v6.11.3-linux-x64.tar -C ../software/   #解压tar文件到指定目录
+
+vim ~/.bashrc       #设置环境变量
+
+#将下面两个配置粘贴在文档最下面，NODE路径根据自己解压的nodejs文件目录为准#
+export NODE=/home/linkage/software/node-v6.11.3-linux-x64
+export PATH=$NODE/bin:$PATH
+
+执行  source ~/.bashrc 让刚才的配置生效
+
+#执行下面命令验证：
+node -v
+npm -v
+
+#nodejs配置：
+1.npm 淘宝镜像配置
+    npm config set registry http://registry.npm.taobao.org
+    npm info underscore
+2.全局安装需要的模块
+    npm install -g npm
+    npm install -g node-gyp
+    npm install -g pm2
+    npm install -g gulp
+    npm install -g bower
+    npm install -g forever
+    npm install -g grunt-cli
+```
 
 ### 5.go环境安装
+[下载](https://studygolang.com/dl/golang/go1.9.linux-amd64.tar.gz) go语言安装压缩文件
+执行以下命令：
+```
+cd /home/linkage/Documents   #进入压缩文件目录
+
+tar -zxvf go1.8.3.linux-amd64.tar.gz -C ../software/  #解压文件到指定目录
+
+vim ~/.bashrc       #设置环境变量
+
+#将下面配置粘贴在文档最下面，GOROOT指的是解压后的安装文件路径，GOPATH指的是go的工作目录#
+export GOROOT=/home/linkage/software/go
+export GOPATH=/home/linkage/software/gopath
+export PATH=$GOROOT/bin:$PATH
+
+执行  source ~/.bashrc 让刚才的配置生效
+
+#执行下面命令验证：
+go version
+go env
+```
+
+### 6.IPFS 源码环境安装
+```
+go get -u -d github.com/ipfs/go-ipfs   #下载go-ipfs
+
+cd $GOPATH/src/github.com/ipfs/go-ipfs
+
+make install # 安装依赖并编译
+
+cd $GOPATH/bin    #会自动生成可执行文件ipfs,修改代码后再执行make install生成新的ipfs执行文件
+```
