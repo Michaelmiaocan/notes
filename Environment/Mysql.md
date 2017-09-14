@@ -1,4 +1,4 @@
-# MySQL 5.7 环境搭建
+# MySQL5.7 环境搭建
 
 * [Windows](#一windows下搭建mysql数据库)
 * [Linux](#二linux下搭建mysql数据库)
