@@ -6,3 +6,5 @@ mvnw
 mvnw.cmd
 code/java/demo.iml
 *.iml
+code/nodejs/node_modules/
+code/nodejs/package-lock.json

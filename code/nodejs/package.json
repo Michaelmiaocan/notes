@@ -1,10 +1,17 @@
 {
   "name": "nodejs",
   "version": "0.0.1",
+  "author": "liulinhui",
+  "scripts": {
+    "test": "echo test"
+  },
   "dependencies": {
     "kafka-node-slim": "^0.1.0",
     "redis": "^2.8.0",
     "mongoose": "^4.11.11",
     "elasticsearch": "^13.3.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.3"
   }
 }
