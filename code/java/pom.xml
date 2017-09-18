@@ -13,6 +13,7 @@
         <module>elastic</module>
         <module>mongodb</module>
         <module>redis</module>
+        <module>algorithm</module>
     </modules>
 
 
